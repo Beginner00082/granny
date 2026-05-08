@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Granny: Dark House</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #000;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+        #gameCanvas {
+            display: block;
+            touch-action: none;
+        }
+        #menu {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle, #1a0000 0%, #000 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: #8b0000;
+        }
+        #menu h1 {
+            font-size: 56px;
+            text-shadow: 0 0 20px #ff0000, 0 0 40px #8b0000;
+            margin-bottom: 10px;
+            letter-spacing: 8px;
+        }
+        #menu p {
+            color: #666;
+            font-size: 14px;
+            margin: 20px 0;
+        }
+        #playBtn {
+            padding: 18px 50px;
+            font-size: 24px;
+            background: linear-gradient(180deg, #8b0000 0%, #4a0000 100%);
+            border: 2px solid #ff0000;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 0 30px #ff0000;
+            transition: 0.2s;
+        }
+        #playBtn:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 10px #ff0000;
+        }
+        #hud {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            display: none;
+            z-index: 100;
+            pointer-events: none;
+        }
+        #dayText {
+            color: #ff0000;
+            font-size: 24px;
+            text-shadow: 2px 2px 4px #000;
+            font-weight: bold;
+        }
+        #itemSlot {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 60px;
+            height: 60px;
+            border: 3px solid #8b0000;
+            background: rgba(0,0,0,0.7);
+        }
+        .controls {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 220px;
+            display: none;
+            z-index: 100;
+            pointer-events: none;
+        }
+        #joystick {
+            position: absolute;
+            left: 25px;
+            bottom: 25px;
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, rgba(139,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%);
+            border: 3px solid rgba(255,0,0,0.5);
+            border-radius: 50%;
+            pointer-events: auto;
+        }
+        #joyKnob {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #ff0000 0%, #8b0000 100%);
+            border-radius: 50%;
+            top: 40px;
+            left: 40px;
+            box-shadow: 0 0 20px #ff0000;
+        }
+        .btn {
+            position: absolute;
+            right: 25px;
+            width: 75px;
+            height: 75px;
+            border-radius: 15px;
+            border: 3px solid #fff;
+            font-size: 11px;
+            font-weight: bold;
+            pointer-events: auto;
+            color: white;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.5);
+        }
+        .btn:active { transform: translateY(4px); box-shadow: none; }
+        #interactBtn { bottom: 25px; background: linear-gradient(180deg, #00aa00 0%, #005500 100%); }
+        #runBtn { bottom: 115px; background: linear-gradient(180deg, #ff8800 0%, #aa4400 100%); }
+        .hidden { display: none!important; }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <h1>GRANNY</h1>
+        <p>DARK HOUSE</p>
+        <p>5 GIORNI PER SCAPPARE</p>
+        <button id="playBtn">ENTRA</button>
+    </div>
+    
+    <div id="hud">
+        <div id="dayText">GIORNO 1/5</div>
+        <div id="itemSlot"></div>
+    </div>
+    
+    <canvas id="gameCanvas"></canvas>
+    
+    <div class="controls" id="controls">
+        <div id="joystick"><div id="joyKnob"></div></div>
+        <button class="btn" id="interactBtn">USA<br>PRENDI</button>
+        <button class="btn" id="runBtn">CORRI</button>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+  </html>
